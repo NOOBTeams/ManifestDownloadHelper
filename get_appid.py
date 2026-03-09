@@ -110,7 +110,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Search Steam and return game name, appid, and image URL."
     )
-    # parser.add_argument("term", help="Search keyword")
+    parser.add_argument("term", help="Search keyword")
     parser.add_argument(
         "-n",
         "--limit",
@@ -138,7 +138,7 @@ def main() -> None:
     args = parser.parse_args()
 
     results = search_games(
-        '节奏医生',
+        args.term,
         limit=args.limit,
         language=args.language,
         country=args.country,

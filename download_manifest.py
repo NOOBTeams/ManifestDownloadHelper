@@ -1,3 +1,4 @@
+import argparse
 import os
 import random
 import requests
@@ -39,7 +40,7 @@ def encode_appid(appid: str):
     return length_char + str(check_sum) + sub_string
 
 
-def main(appid: str):
+def download_manifest(appid: str):
     api_base_url = get_random_api()
     encoded_id = encode_appid(appid)
     api_url = f'{api_base_url}proxy?id={encoded_id}'
@@ -89,5 +90,17 @@ def main(appid: str):
         print("所有 src 均下载失败。")
 
 
-if __name__ == '__main__':
-    main("774181")
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Download manifest zip with appid"
+    )
+    parser.add_argument("appid", help="appid (get from 'get_appid.py')")
+    args = parser.parse_args()
+
+    download_manifest(
+        args.appid
+    )
+
+
+if __name__ == "__main__":
+    main()
