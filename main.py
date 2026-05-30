@@ -71,11 +71,12 @@ def main():
     try:
         # 执行搜索和下载
         downloader.search_and_download(args.query, **search_kwargs)
+        input("\n\n按任意键退出...")
     except KeyboardInterrupt:
-        print("\n\n操作被用户中断")
+        input("\n\n操作被用户中断")
         sys.exit(1)
     except Exception as e:
-        print(f"\n发生错误: {e}")
+        input(f"\n发生错误: {e}")
         sys.exit(1)
 
 
