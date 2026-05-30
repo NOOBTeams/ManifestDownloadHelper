@@ -55,7 +55,12 @@ def main():
         version="Steam Manifest Downloader 0.3.0"
     )
 
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
+    except:
+        print("\n\n请键入参数")
+        input("按任意键退出...")
+        sys.exit(1)
 
     # 创建下载器
     downloader = SteamManifestDownloader()
@@ -73,10 +78,12 @@ def main():
         downloader.search_and_download(args.query, **search_kwargs)
         input("\n\n按任意键退出...")
     except KeyboardInterrupt:
-        input("\n\n操作被用户中断")
+        print("\n\n操作被用户中断")
+        input("按任意键退出...")
         sys.exit(1)
     except Exception as e:
-        input(f"\n发生错误: {e}")
+        print(f"\n发生错误: {e}")
+        input("按任意键退出...")
         sys.exit(1)
 
 
